@@ -12,7 +12,7 @@ Use two rectified images as the inputs, estimate depth map and compare the resul
 
 •	If input image size is found larger than certain threshold level, image resizing is done, which helps to boost computational speed.
 
-•	Two types of scoring schemes have been used here to compute depth map. Sum of Squared Differences (SSD) and Cross Correlation (cor) methods have been used for score computation.
+•	Two types of scoring schemes have been used here to compute depth map (Sum of Squared Differences(SSD) and Cross Correlation(cor) ).
 
 •	The sharpness and smoothness of depth map depends on Window Size and Maximum Offset Levels that can be tuned as per use case.
 
