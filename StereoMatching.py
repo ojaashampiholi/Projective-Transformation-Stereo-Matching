@@ -17,41 +17,36 @@ class stereoMatching():
         return ssd_total
 
     def cor(self, left, right, row, col, windowSize, offset):
-        # cc_total = 1
-        # for x in range(-(windowSize // 2), (windowSize // 2)):
-        #     for y in range(-(windowSize // 2), (windowSize // 2)):
-        #         cc_total *= int(left[row + x, col + y] * int(right[row + x, col + y - offset]))
-        #
-        # cc_mag = 0
-        # for x in range(-(windowSize // 2), (windowSize // 2)):
-        #     for y in range(-(windowSize // 2), (windowSize // 2)):
-        #         cc_total *= int(left[row + x, col + y] * int(right[row + x, col + y - offset]))
+        cc_total = 1
+        for x in range(-(windowSize // 2), (windowSize // 2)):
+            for y in range(-(windowSize // 2), (windowSize // 2)):
+                cc_total *= int(left[row + x, col + y] * int(right[row + x, col + y - offset]))
 
-        num = np.sum(left[row, col:col + windowSize] * right[row, col - offset:col + windowSize - offset])
-        den = np.sum(np.sqrt(np.square(left[row, col:col + windowSize]) * np.square(right[row, col - offset:col + windowSize - offset]))) + 10 ** -8
-        return np.round(num / den, 2)
+        cc_mag = 0
+        for x in range(-(windowSize // 2), (windowSize // 2)):
+            for y in range(-(windowSize // 2), (windowSize // 2)):
+                cc_mag += (int(int(left[row + x, col + y] **2))+(int(right[row + x, col + y - offset]))**2)
+        cc_mag += 10 ** -8
+        print (cc_total, cc_mag)
+        return np.round(cc_total / cc_mag, 2)
 
     def getDepthMap(self, left, right, windowSize, maxOffset, type):
         depthArray = np.zeros_like(right)
         rows, cols = depthArray.shape
         offsetFactor = 255 / maxOffset
         for row in range((windowSize//2), rows-(windowSize//2)):
-            if row == (windowSize//2):
-                # Viterbi Values will
-                for col in range((windowSize//2), cols - (windowSize//2)):
-                    bestScore = 65536
-                    for offset in range(maxOffset):
-                        if type == 'ssd':
-                            bestScore_temp = self.SSD(left, right, row, col, windowSize, offset)
-                        # elif type == 'cc':
-                        #     bestScore_temp = self.cor(left, right, row, col, windowSize, offset)
+            for col in range((windowSize//2), cols - (windowSize//2)):
+                bestScore = 65536
+                for offset in range(maxOffset):
+                    if type == 'ssd':
+                        bestScore_temp = self.SSD(left, right, row, col, windowSize, offset)
+                    elif type == 'cc':
+                        bestScore_temp = self.cor(left, right, row, col, windowSize, offset)
 
-                        if bestScore_temp < bestScore:
-                            bestScore = bestScore_temp
-                            bestOffset = offset
-                    depthArray[row, col] = bestOffset * offsetFactor
-            else:
-
+                    if bestScore_temp <= bestScore:
+                        bestScore = bestScore_temp
+                        bestOffset = offset
+                depthArray[row, col] = bestOffset * offsetFactor
         return depthArray
 
     def endPointError(self, depthArray, gt):
@@ -84,15 +79,15 @@ class stereoMatching():
 
         # Resize the images if they are too large by a factor of 1/2
         n_rows, n_cols = left.shape
-        if n_rows>500  or n_cols>1000:
+        if n_rows>500 or n_cols>1000:
             print ("Image size is: ", left.shape, ". Resizing the images to 0.5 times the original size.")
-            left = self.resizeTemplate(left_img, 0.5)
-            right = self.resizeTemplate(right_img, 0.5)
-            gt = self.resizeTemplate(gt_img, 0.5)
+            left = self.resizeTemplate(left_img, 0.45)
+            right = self.resizeTemplate(right_img, 0.45)
+            gt = self.resizeTemplate(gt_img, 0.45)
 
         # Get depth map using SSD
         print ("SSD")
-        depth_arr_ssd = self.getDepthMap(left, right, windowSize = 15, maxOffset = 7, type = "ssd")
+        depth_arr_ssd = self.getDepthMap(left, right, windowSize = 3, maxOffset = 30, type = "ssd")
         imageio.imwrite("output_ssd.png", depth_arr_ssd)
 
 
