@@ -18,4 +18,4 @@ Use two rectified images as the inputs, estimate depth map and compare the resul
 
 •	The computed depth map is saved as output image.
 
-•	The ground truth and computed Depth Maps are used to compute the end point error and error rate. These measures show how well the model performs on the input image pairs for depth estimation.
+•	The ground truth and computed Depth Maps are used to compute the end point error and error rate. These measures show how well application performs on input image pairs for depth estimation.
