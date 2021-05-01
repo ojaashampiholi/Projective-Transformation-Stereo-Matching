@@ -21,3 +21,6 @@ Use two rectified images as the inputs, estimate depth map and compare the resul
 •	The ground truth and computed Depth Maps are used to compute the end point error and error rate. These measures show how well application performs on input image pairs for depth estimation.
 
 ### Class Methods and Design Choices
+
+#### resizeTemplate()
+This method takes input image and resizing factor as input. The resizing factor must be a number between (0.25 - 1) where 0.25 implies that image is reduced to 1/4th of its original size and 1 implies no change in the image size. Resized image is given as output.
