@@ -92,7 +92,7 @@ Overall, the window based matching using SSD and cross correlation captured the 
 
 
 #### Quantitative Results - 
-![plot]('./Output/Screenshot 2021-05-01 234149.png')
+![plot][https://github.com/ojaashampiholi/Projective-Transformation-Stereo-Matching/blob/main/Output/Screenshot%202021-05-01%20234149.png]
 
 Evident from the results, the algorithm do capture some depth information, but viterbi shows great improvement on the results. 
 
