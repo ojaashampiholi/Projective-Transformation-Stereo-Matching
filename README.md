@@ -110,11 +110,11 @@ Here, for every pixel in the source image, we calculate the projected coordinate
 
 The Empty Billboard Image is
 
-![plot](./images/source/empty_bilboard4.jpg)
+![plot](./images/target/empty_bilboard4.jpg)
 
 The Minion Image is
 
-![plot](./images/target/happy_minions2.png)
+![plot](./images/source/happy_minions2.png)
 
 The Output Image is
 
