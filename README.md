@@ -26,5 +26,6 @@ Use two rectified images as the inputs, estimate depth map and compare the resul
 This method takes input image and resizing factor as input. The resizing factor must be a number between (0.25 - 1) where 0.25 implies that image is reduced to 1/4th of its original size and 1 implies no change in the image size. Resized image is given as output.
 
 #### SSD()
-This method takes left and right input images along with row, column, window size and offset information as input and computes the sum of squared differences between left and right input images which is returned as output.
+This method takes left and right input images along with row, column, window size and offset information as input and computes the sum of squared differences between left and right input images which is returned as output. The formula for the same has been shown below:
 
+![plot](./Formulae/ssd.JPG)
