@@ -49,3 +49,8 @@ This function takes depth map and ground truth images as input and calculates th
 This function takes depth map and ground truth images as input and calculates the error rate between images which is returned as output. The implementation uses following formula:
 
 ![plot](./Formulae/er.JPG)
+
+#### stereoMatch()
+This method is the main method which implements all the steps mentioned in Algorithm using the above support functions.
+
+### Results
