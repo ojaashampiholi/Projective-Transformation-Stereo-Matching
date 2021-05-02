@@ -67,6 +67,7 @@ apply_homography()
 Here, for every pixel in the source image, we calculate the projected coordinate and convert them from homogeneous form to cartesian form and paste the pixel value on the target image. 
 
 ### Results
+![plot](./readme_images/op.PNG)
 
 
 
