@@ -107,6 +107,17 @@ This method is where the SVD of matrix A is done, smallest eigen vector is found
 Here, for every pixel in the source image, we calculate the projected coordinate and convert them from homogeneous form to cartesian form and paste the pixel value on the target image. 
 
 ### Results
+
+The Empty Billboard Image is
+
+![plot](./images/source/empty_bilboard4.jpg)
+
+The Minion Image is
+
+![plot](./images/target/happy_minions2.png)
+
+The Output Image is
+
 ![plot](./readme_images/op.PNG)
 
 ## Stereo Matching
@@ -117,16 +128,21 @@ Use two rectified images as the inputs to estimate the depth map of the scene an
 ### How to Use the Application 
 
 1. Clone the repository to your machine using the following command:
+
 `git clone "https://github.com/ojaashampiholi/Projective-Transformation-Stereo-Matching.git"`
 
 2. Change the directory to access the files as follows:
+
 `cd Projective-Transformation-Stereo-Matching/`
 
 3. To test the application on the images use the following code:
+
 `python code_filename.py left_image right_image gt_image`
 
 For example: 
+
 `python StereoMatching.py 1/0015_rgb_left.png 1/0015_rgb_right.png 1/0015_gt.png`
+
 `python StereoViterbi.py 1/0015_rgb_left.png 1/0015_rgb_right.png 1/0015_gt.png`
 
 
@@ -187,15 +203,15 @@ This method is the main method which implements all the steps mentioned in Algor
 Overall, the window based matching using SSD and cross correlation captured the depths of the images, but produced a noisy depth map, whereas viterbi algorithm produced a smoother depth map which looked much closer to the ground truth. The outputs for all the given images have been added to the repo. But here are some qualitative and quantitative resutls. 
 
 #### Qualitative Results - 
-1. Cross Correlation
+1.Cross Correlation
 
 ![plot](./Output/2/output_cc.png)
 
-2. SSD
+2.SSD
 
 ![plot](./Output/2/output_ssd.png)
 
-3. Viterbi
+3.Viterbi
 
 ![plot](./Output/2/output_viterbi.jpg)
 
