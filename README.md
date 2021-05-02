@@ -5,6 +5,24 @@
 ### Problem Statement
 Use two rectified images as the inputs, estimate depth map and compare the results quantitatively and qualitatively with ground truth image provided for pair of input images.
 
+### How to Use the Application 
+
+Clone the repository to your machine using the following command
+
+`git clone "https://github.com/ojaashampiholi/Projective-Transformation-Stereo-Matching.git"`
+
+Then change the directory to access the files as follows
+
+`cd Projective-Transformation-Stereo-Matching/`
+
+To test the application on the pre-uploaded images use the following code
+
+`python omr.py "test_images/music_file.png"`
+
+To test the application on the custom images use the following code
+
+`python omr.py "path_to_image/music_file.png"`
+
 ### Algorithm
 •	Input Images from both left and right camera are taken as the input by this program along with the ground truth depth map. 
 
