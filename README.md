@@ -29,3 +29,9 @@ This method takes input image and resizing factor as input. The resizing factor 
 This method takes left and right input images along with row, column, window size and offset information as input and computes the sum of squared differences between left and right input images which is returned as output. The formula for the same has been shown below:
 
 ![plot](./Formulae/ssd.JPG)
+
+#### cor()
+This method takes left and right input images along with row, column, window size and offset information as input and computes the cross correlation between left and right input images which is returned as output. The formula for the same has been shown below:
+
+![plot](./Formulae/cor.JPG)
+
