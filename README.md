@@ -80,15 +80,15 @@ Overall, the window based matching using SSD and cross correlation captured the 
 #### Qualitative Results - 
 1. Cross Correlation
 
-![plot](./Output/1/output_cc.png)
+![plot](./Output/2/output_cc.png)
 
 2. SSD
 
-![plot](./Output/1/output_ssd.png)
+![plot](./Output/2/output_ssd.png)
 
 3. Viterbi
 
-![plot](./Output/1/output_viterbi.jpg)
+![plot](./Output/2/output_viterbi.jpg)
 
 
 #### Quantitative Results - 
