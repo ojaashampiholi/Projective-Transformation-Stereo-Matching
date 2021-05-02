@@ -40,3 +40,12 @@ This method takes left and right images as input along with window size, maximum
 
 For each pixel in the left image, all the pixels in the corresponding window along with offset are compared from the right image. The offset of pixel with the least score is chosen as the output offset level. This offset is multiplied by the offset factor to get the corresponding pixel value for the depth map from the calculated disparity. The depth map is returned as output by this method.
 
+#### endPointError()
+This function takes depth map and ground truth images as input and calculates the end point error between images which is returned as output. The implementation uses following formula:
+
+![plot](./Formulae/epe.JPG)
+
+#### errorRate()
+This function takes depth map and ground truth images as input and calculates the error rate between images which is returned as output. The implementation uses following formula:
+
+![plot](./Formulae/er.JPG)
