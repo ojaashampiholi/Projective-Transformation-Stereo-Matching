@@ -8,7 +8,15 @@ Given a source image and an empty billboard image (target), the code should put 
 
 ### How to Use the Application:
 
-To test the application, run using the below command followed by annotation of the target image.
+Clone the repository to your machine using the following command
+
+`git clone "https://github.com/ojaashampiholi/Projective-Transformation-Stereo-Matching.git"`
+
+Then change the directory to access the files as follows
+
+`cd Projective-Transformation-Stereo-Matching/`
+
+To test the application on command line, run using the below command followed by annotation of the target image.
 
 `python homography.py source_image_name target_image_name`
 
@@ -86,7 +94,7 @@ Then change the directory to access the files as follows
 
 `cd Projective-Transformation-Stereo-Matching/`
 
-To test the application on the pre-uploaded images use the following code
+To test the application on command line, run using the below command
 
 `python StereoMatching.py path_to_left_image path_to_right_image path_to_gt_image`
 
