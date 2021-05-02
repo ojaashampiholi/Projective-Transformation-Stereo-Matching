@@ -81,9 +81,10 @@ The Empty Billboard Image is
 
 The Minion Image is
 
-![plot](./images/source/happy_minions1.png)
+![plot](./images/source/happy_minions2.png)
 
 The Output Image obtained from the program is
+
 ![plot](./readme_images/op.PNG)
 
 
