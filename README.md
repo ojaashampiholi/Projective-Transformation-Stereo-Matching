@@ -88,14 +88,11 @@ Overall, the window based matching using SSD and cross correlation captured the 
 
 3. Viterbi
 
-![plot](./Output/1/output_viterbi.png)
+![plot](./Output/1/output_viterbi.jpg)
 
-4. Ground Truth
-
-![plot](./Output/1/0015_gt.png)
 
 #### Quantitative Results - 
-![plot](./Output/Screenshot\ 2021-05-01\ 234149.png)
+![plot]('./Output/Screenshot 2021-05-01 234149.png')
 
 Evident from the results, the algorithm do capture some depth information, but viterbi shows great improvement on the results. 
 
