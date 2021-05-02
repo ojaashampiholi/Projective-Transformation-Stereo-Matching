@@ -1,5 +1,72 @@
 # Projective Transformation and Stereo Matching
 
+## Putting Happy Minions Faces on Empty Billboards of Times Square
+
+### Problem Statement:
+
+Given a source image and an empty billboard image (target), the code should put the source image on the empty billboard of the Time Square automatically.
+
+### How to Use the Application:
+
+To test the application, run using the below command followed by annotation of the target image.
+
+python homography.py source_image_name target_image_name
+
+### How to annotate:
+
+Once the program runs, the source image is displayed on a window. Upon closing the source image window, the target image window appears. Annotate the four corners of the target image (by clicking on the desired points using mouse) and close the window. While annotating, make sure to start from the top left corner of the empty bill board and continue clockwise. Finally, the output window opens up with the warped source image on the bill board.
+
+### Source code working explained:
+
+1. The input source code and target images are read and displayed.
+2. Four corners on the target image are annotated by mouse clicks received from the user. The annotated target image and the coordinates of the annotated corners are saved.
+3. The source image corners are defined from starting at the top left corner marked as (0,0) and continuing clockwise. Second pair would be (width,0) on the top right corner, third pair would be (width,height) on the bottom right corner and (0,height) on the bottom left corner. It is important to maintain the order while annotating and defining the corner points in the source image as this preserves the one to one point correspondence between the two images in the right way.
+
+4.Estimating Homography Matrix:
+4a.Defining matrix A:
+The homography matrix H is a 3*3 matrix with 9 unknowns. This matrix can be computed with a matrix system such that the four pairs of correspondance points are written as 2×9 matrices such as:
+
+						 [[-xi, -yi, -1, 0, 0, 0, xi*ui, yi*ui, ui],
+                         [0, 0, 0, -xi, -yi, -1, xi*vi, yi*vi, vi]]
+   where (x,y) point pair belongs to the source image and (u,v) point pair belongs to target image. 
+The above matrix form is achieved by the following steps:
+
+
+Four 2*9 matrices are defined as above one for each pair of points. Thus, after stacking them together for multiple point correspondences, we get the matrix A of shape 8*9. Since there are 9 unknowns in the H matrix, we can appened a row of zeros with the last element one to the matrix A and make it 9*9.
+
+4b.Least Square method: 
+To solve the system of linear equations of the form Ah = 0, we have used Eigenvalues and Eigenvectors. We applied SVD on matrix A, and have taken the eigen vector corresponding to the minimum eigen value. This eigenvector of shape (9*1) when reshaped to 3*3 matrix gives the Homography matrix for our problem.
+
+5.Applying Homography matrix to the source image:
+For every pixel in the source image, we can compute the projected coordinates p^(x^,y^) of any point p(x,y) such as:
+
+
+The homogeneous coordinates need to be converted to cartesian coordinates. Upon dividing the first two entries of p^ by the third coordinate, we can get the projected coordinates p^(x^,y^) in the cartesian form. The pixel values of the source image at p(x,y) are pasted on the target image at the corresponding projected coordinate p^(x^,y^). The resultant image will have the warped source image on the target image. 
+
+### Methods explained:
+
+read_image()
+Reads the source and target images using the path provided while running the code
+
+display_image()
+Displays the source and target images
+
+call_mouse_event()
+Mouse event is triggered as and when a new point is clicked on the target image and the method annotate_image() gets called to mark the selected point on the image
+
+form_Amatrix()
+This method is where the source image corners are defined, matrix A of the above format is defined.
+
+estimate_homography_matrix()
+This method is where the SVD of matrix A is done, smallest eigen vector is found to estimate the homography matrix.
+
+apply_homography()
+Here, for every pixel in the source image, we calculate the projected coordinate and convert them from homogeneous form to cartesian form and paste the pixel value on the target image. 
+
+### Results
+
+
+
 ## Stereo Matching
 
 ### Problem Statement
