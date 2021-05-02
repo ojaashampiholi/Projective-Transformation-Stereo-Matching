@@ -24,9 +24,9 @@ Once the program runs, the source image is displayed on a window. Upon closing t
 
 3. The source image corners are defined from starting at the top left corner marked as (0,0) and continuing clockwise. Second pair would be (width,0) on the top right corner, third pair would be (width,height) on the bottom right corner and (0,height) on the bottom left corner. It is important to maintain the order while annotating and defining the corner points in the source image as this preserves the one to one point correspondence between the two images in the right way.
 
-4.Estimating Homography Matrix:
+4. Estimating Homography Matrix:
 
-4a.Defining matrix A:
+4a. Defining matrix A:
 The homography matrix H is a 3*3 matrix with 9 unknowns. This matrix can be computed with a matrix system such that the four pairs of correspondance points are written as 2×9 matrices such as:
 
 						 [[-xi, -yi, -1, 0, 0, 0, xi*ui, yi*ui, ui],
@@ -37,10 +37,10 @@ The above matrix form is achieved by the following steps:
 
 Four 2*9 matrices are defined as above one for each pair of points. Thus, after stacking them together for multiple point correspondences, we get the matrix A of shape 8*9. Since there are 9 unknowns in the H matrix, we can appened a row of zeros with the last element one to the matrix A and make it 9*9.
 
-4b.Least Square method: 
+4b. Least Square method: 
 To solve the system of linear equations of the form Ah = 0, we have used Eigenvalues and Eigenvectors. We applied SVD on matrix A, and have taken the eigen vector corresponding to the minimum eigen value. This eigenvector of shape (9*1) when reshaped to 3*3 matrix gives the Homography matrix for our problem.
 
-5.Applying Homography matrix to the source image:
+5. Applying Homography matrix to the source image:
 For every pixel in the source image, we can compute the projected coordinates p^(x^,y^) of any point p(x,y) such as:
 
 
