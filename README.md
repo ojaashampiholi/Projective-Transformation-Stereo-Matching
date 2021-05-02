@@ -10,7 +10,7 @@ Given a source image and an empty billboard image (target), the code should put 
 
 To test the application, run using the below command followed by annotation of the target image.
 
-python homography.py source_image_name target_image_name
+`python homography.py source_image_name target_image_name`
 
 ### How to annotate:
 
@@ -19,10 +19,13 @@ Once the program runs, the source image is displayed on a window. Upon closing t
 ### Source code working explained:
 
 1. The input source code and target images are read and displayed.
+
 2. Four corners on the target image are annotated by mouse clicks received from the user. The annotated target image and the coordinates of the annotated corners are saved.
+
 3. The source image corners are defined from starting at the top left corner marked as (0,0) and continuing clockwise. Second pair would be (width,0) on the top right corner, third pair would be (width,height) on the bottom right corner and (0,height) on the bottom left corner. It is important to maintain the order while annotating and defining the corner points in the source image as this preserves the one to one point correspondence between the two images in the right way.
 
 4.Estimating Homography Matrix:
+
 4a.Defining matrix A:
 The homography matrix H is a 3*3 matrix with 9 unknowns. This matrix can be computed with a matrix system such that the four pairs of correspondance points are written as 2×9 matrices such as:
 
