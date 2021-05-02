@@ -75,6 +75,15 @@ This method is where the SVD of matrix A is done, smallest eigen vector is found
 Here, for every pixel in the source image, we calculate the projected coordinate and convert them from homogeneous form to cartesian form and paste the pixel value on the target image. 
 
 ### Results
+The Empty Billboard Image is
+
+![plot](./target/empty_bilboard4.jpg)
+
+The Minion Image is
+
+![plot](./source/happy_minions1.png)
+
+The Output Image obtained from the program is
 ![plot](./readme_images/op.PNG)
 
 
