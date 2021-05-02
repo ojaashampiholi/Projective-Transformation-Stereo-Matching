@@ -1,4 +1,4 @@
-# Projective-Transformation-Stereo-Matching
+# Projective Transformation and Stereo Matching
 
 ## Stereo Matching
 
