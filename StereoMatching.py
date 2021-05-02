@@ -5,7 +5,6 @@ import sys
 
 class stereoMatching():
     def resizeTemplate(self, template, factor):
-        # factor = space/template.height
         temp = template.resize((int(template.width * factor), int(template.height * factor)))
         return np.asarray(temp)
 
@@ -62,13 +61,6 @@ class stereoMatching():
         return error
 
     def stereoMatch (self, left_filename, right_filename, gt_filename):
-        
-        # basepath =  "C://Users//navek\Documents//CV//a2//input_images-2//input_images//part2//"
-        # # Read the images
-        # left_filename = "3//0008_rgb_left"
-        # right_filename = "3//0008_rgb_right"
-        # gt_filename = "3//0008_gt"
-
         left_img = Image.open(left_filename).convert('L')
         right_img = Image.open(right_filename).convert('L')
         left = np.asarray(left_img)
