@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
 import imageio
+import sys
 
 class stereoMatching():
     def resizeTemplate(self, template, factor):
@@ -17,17 +18,16 @@ class stereoMatching():
         return ssd_total
 
     def cor(self, left, right, row, col, windowSize, offset):
-        cc_total = 1
+        cc_total = 0
         for x in range(-(windowSize // 2), (windowSize // 2)):
             for y in range(-(windowSize // 2), (windowSize // 2)):
-                cc_total *= int(left[row + x, col + y] * int(right[row + x, col + y - offset]))
+                cc_total += int(left[row + x, col + y] * int(right[row + x, col + y - offset]))
 
         cc_mag = 0
         for x in range(-(windowSize // 2), (windowSize // 2)):
             for y in range(-(windowSize // 2), (windowSize // 2)):
                 cc_mag += (int(int(left[row + x, col + y] **2))+(int(right[row + x, col + y - offset]))**2)
         cc_mag += 10 ** -8
-        print (cc_total, cc_mag)
         return np.round(cc_total / cc_mag, 2)
 
     def getDepthMap(self, left, right, windowSize, maxOffset, type):
@@ -61,20 +61,21 @@ class stereoMatching():
         error = (np.sum(temp) / (rows * cols)) * 100
         return error
 
-    def stereoMatch (self):
-        basepath =  "C://Users//navek\Documents//CV//a2//input_images-2//input_images//part2//"
+    def stereoMatch (self, left_filename, right_filename, gt_filename):
+        
+        # basepath =  "C://Users//navek\Documents//CV//a2//input_images-2//input_images//part2//"
+        # # Read the images
+        # left_filename = "3//0008_rgb_left"
+        # right_filename = "3//0008_rgb_right"
+        # gt_filename = "3//0008_gt"
 
-        # Read the images
-        left_filename = "1//0015_rgb_left"
-        right_filename = "1//0015_rgb_right"
-        left_img = Image.open(basepath+left_filename+'.png').convert('L')
-        right_img = Image.open(basepath+right_filename+'.png').convert('L')
+        left_img = Image.open(left_filename).convert('L')
+        right_img = Image.open(right_filename).convert('L')
         left = np.asarray(left_img)
         right = np.asarray(right_img)
 
-        # Also read the ground truth disparity map for performance evaluation
-        gt_filename = "1//0015_gt"
-        gt_img = Image.open(basepath+gt_filename+'.png').convert('L')
+        # Ground truth disparity map for performance evaluation
+        gt_img = Image.open(gt_filename).convert('L')
         gt = np.asarray(gt_img)
 
         # Resize the images if they are too large by a factor of 1/2
@@ -87,7 +88,7 @@ class stereoMatching():
 
         # Get depth map using SSD
         print ("SSD")
-        depth_arr_ssd = self.getDepthMap(left, right, windowSize = 3, maxOffset = 30, type = "ssd")
+        depth_arr_ssd = self.getDepthMap(left, right, windowSize=3, maxOffset=30, type = "ssd")
         imageio.imwrite("output_ssd.png", depth_arr_ssd)
 
 
@@ -97,7 +98,7 @@ class stereoMatching():
         print("The Error Rate for the System is", er)
 
         print ("Cross-Correlation")
-        depth_arr_cc = self.getDepthMap(left, right, windowSize=15, maxOffset=7, type="cc")
+        depth_arr_cc = self.getDepthMap(left, right, windowSize=3, maxOffset=30, type="cc")
         imageio.imwrite("output_cc.png", depth_arr_cc)
 
         epr = self.endPointError(depth_arr_cc, gt)
@@ -105,5 +106,9 @@ class stereoMatching():
         print("The End Point Error for the System is", epr)
         print("The Error Rate for the System is", er)
 
-
-stereoMatching().stereoMatch()
+if __name__ == "__main__":
+    if len(sys.argv)==4:
+        (left_filename, right_filename, gt_filename) = sys.argv[1:]
+    else:
+        raise Exception("Program requires 3 arguments: left image file, right image file, ground truth file.")
+    stereoMatching().stereoMatch(left_filename, right_filename, gt_filename)
