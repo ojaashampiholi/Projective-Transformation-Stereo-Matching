@@ -88,11 +88,7 @@ Then change the directory to access the files as follows
 
 To test the application on the pre-uploaded images use the following code
 
-`python omr.py "test_images/music_file.png"`
-
-To test the application on the custom images use the following code
-
-`python omr.py "path_to_image/music_file.png"`
+`python StereoMatching.py path_to_left_image path_to_right_image path_to_gt_image`
 
 ### Algorithm
 •	Input Images from both left and right camera are taken as the input by this program along with the ground truth depth map. 
